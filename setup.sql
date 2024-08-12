@@ -1,4 +1,4 @@
-USE ROLE sysadmin;
+USE ROLE ACCOUNTADMIN;
 
 /*--
 • database, schema and warehouse creation
