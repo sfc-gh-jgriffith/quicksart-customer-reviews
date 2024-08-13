@@ -12,9 +12,9 @@ grant usage on integration HOL_GITHUB_INTEGRATION to role ACCOUNTADMIN;
 
 create database if not exists git ;
 
-CREATE OR REPLACE GIT REPOSITORY git.public.ml_functions
-  ORIGIN = 'https://github.com/sfc-gh-jgriffith/quickstart-ml-functions.git'
+CREATE OR REPLACE GIT REPOSITORY git.public.customer_reviews
+  ORIGIN = 'https://github.com/sfc-gh-jgriffith/quicksart-customer-reviews.git'
   API_INTEGRATION = HOL_GITHUB_INTEGRATION;
 
-execute immediate from @git.public.ml_functions/branches/main/setup.sql;
+execute immediate from @git.public.customer_reviews/branches/main/setup.sql;
 ```
