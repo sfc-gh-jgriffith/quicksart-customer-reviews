@@ -20,7 +20,7 @@ CREATE OR REPLACE SCHEMA tb_voc.harmonized;
 CREATE OR REPLACE SCHEMA tb_voc.analytics;
 
 -- create tasty_ds_wh warehouse
-CREATE OR REPLACE WAREHOUSE tasty_ds_wh
+CREATE WAREHOUSE IF NOT EXISTS tasty_ds_wh
     WAREHOUSE_SIZE = 'large'
     WAREHOUSE_TYPE = 'standard'
     AUTO_SUSPEND = 60
@@ -173,6 +173,11 @@ FROM @tb_voc.public.s3load/raw_support/truck_reviews/;
 
 -- scale wh to medium
 ALTER WAREHOUSE tasty_ds_wh SET WAREHOUSE_SIZE = 'Medium';
+
+CREATE OR REPLACE NOTEBOOK "Cortex LLM Functions Quickstart"
+    FROM '@git.public.customer_reviews/branches/main/Customer Review Analytics'
+    MAIN_FILE = 'notebook_app.ipynb'
+    QUERY_WAREHOUSE = tasty_ds_wh;
 
 -- setup completion note
 SELECT 'setup is now complete' AS note;
